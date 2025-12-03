@@ -140,7 +140,7 @@ def get_text_chunks(text):
 
 
 # =========================
-# 🤖 PROMPT BUILDER (DIREFAKTOR)
+# 📑 PROMPT BUILDER (DIREFAKTOR)
 # =========================
 def build_gemini_prompt(question):
     """
@@ -229,7 +229,7 @@ Sumber Regulasi: Undang-Undang Republik Indonesia Nomor 3 Tahun 2024
 
 
 # =========================
-# 🤖 GEMINI REST CLIENT
+# 📑 GEMINI REST CLIENT
 # =========================
 def call_gemini_rest(prompt):
     url = f"{GEMINI_ENDPOINT}?key={GEMINI_API_KEY}"
@@ -262,7 +262,7 @@ def user_input(user_question):
 
 def clear_chat_history():
     st.session_state.messages = [
-        {"role": "assistant", "content": "Tanyakan apapun terkait regulasi pengadaan barang/jasa."}
+        {"role": "assistant", "content": "Tanyakan apapun terkait regulasi Pengadaan Barang/Jasa di Desa."}
     ]
 
 
@@ -272,7 +272,7 @@ def clear_chat_history():
 # =========================
 def main():
     st.set_page_config(page_title="TemplatePBJDesaBot | Regulasi dan Template PBJ Desa ChatBot", page_icon="📑")
-    st.title("Selamat datang di TemplatePBJDesaBot!")
+    st.title("Selamat datang di Template PBJ Desa Bot!")
 
     state = load_state()
 
@@ -358,4 +358,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
