@@ -61,13 +61,13 @@ streamlit run app.py
    * Memproses dokumen.
    * Membersihkan chat history.
 
-4. Ketik pertanyaan terkait regulasi pada kotak chat, ReguBot akan menjawab berdasarkan dokumen dan regulasi yang tersedia.
+4. Ketik pertanyaan terkait regulasi pada kotak chat, TemplatePBJDesaBot akan menjawab berdasarkan dokumen dan regulasi yang tersedia.
 
 ---
 
 ## Struktur Regulasi
 
-ReguBot sudah dilengkapi daftar regulasi beserta jumlah pasal untuk validasi, antara lain:
+TemplatePBJDesaBot sudah dilengkapi daftar regulasi beserta jumlah pasal untuk validasi, antara lain:
 
 * UU No 3 Tahun 2024
 * UU No 6 Tahun 2014
@@ -83,7 +83,7 @@ Regulasi tertentu dapat **dikecualikan** agar tidak disertakan dalam jawaban.
 
 * Jawaban yang diberikan TemplatePBJDesaBot **harus selalu diverifikasi** terutama jika berkaitan dengan keputusan hukum penting.
 * TemplatePBJDesaBot **tidak membuat asumsi tentang pasal atau ayat** yang tidak ada dalam regulasi.
-* Jika pertanyaan tidak terkait regulasi, ReguBot tetap dapat memberikan jawaban berbasis sumber eksternal.
+* Jika pertanyaan tidak terkait regulasi, TemplatePBJDesaBot tetap dapat memberikan jawaban berbasis sumber eksternal.
 
 ---
 
