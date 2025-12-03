@@ -271,8 +271,8 @@ def clear_chat_history():
 # 🚀 MAIN STREAMLIT APP
 # =========================
 def main():
-    st.set_page_config(page_title="ReguBot | Regulasi ChatBot", page_icon="🤖")
-    st.title("Selamat datang di ReguBot!")
+    st.set_page_config(page_title="TemplatePBJDesaBot | Regulasi dan Template PBJ Desa ChatBot", page_icon="📑")
+    st.title("Selamat datang di TemplatePBJDesaBot!")
 
     state = load_state()
 
@@ -285,7 +285,7 @@ def main():
         st.markdown(
             """
             <div style="text-align:center;">
-                <img src="https://raw.githubusercontent.com/YonaFr/ReguBot/main/PBJ.png" width="140">
+                <img src="https://raw.githubusercontent.com/subh4n/TemplatePBJDesaBot/main/PBJDesa.png" width="140">
             </div>
             """,
             unsafe_allow_html=True
@@ -318,7 +318,7 @@ def main():
             """
             <div style="text-align:center; font-size:12px; color:#777;">
                  <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><br>
-                2025. Yona Friantina.<br>
+                2025. Nurus Subhan.<br>
                 Some rights reserved.<br>
                 <span style="font-size:11px;">Build with Streamlit</span>
             </div>
@@ -358,3 +358,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
