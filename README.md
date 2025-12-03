@@ -1,4 +1,4 @@
-# TemplatePBJDesa | Regulasi dan Template PBJ Desa ChatBot 🤖
+# TemplatePBJDesaBot | Regulasi dan Template PBJ Desa ChatBot 🤖
 
 **TemplatePBJDesaBot** adalah aplikasi berbasis **Streamlit** yang dirancang untuk membantu pengguna menjawab pertanyaan terkait regulasi Pengadaan Barang/Jasa di Desa dan Bentuk Template PBJ Desa. Aplikasi ini dapat membaca dokumen PDF, memprosesnya, dan menjawab pertanyaan menggunakan model **Google Gemini** sambil tetap mematuhi regulasi yang berlaku.
 
@@ -81,8 +81,8 @@ Regulasi tertentu dapat **dikecualikan** agar tidak disertakan dalam jawaban.
 
 ## Catatan Penggunaan
 
-* Jawaban yang diberikan ReguBot **harus selalu diverifikasi** terutama jika berkaitan dengan keputusan hukum penting.
-* ReguBot **tidak membuat asumsi tentang pasal atau ayat** yang tidak ada dalam regulasi.
+* Jawaban yang diberikan TemplatePBJDesaBot **harus selalu diverifikasi** terutama jika berkaitan dengan keputusan hukum penting.
+* TemplatePBJDesaBot **tidak membuat asumsi tentang pasal atau ayat** yang tidak ada dalam regulasi.
 * Jika pertanyaan tidak terkait regulasi, ReguBot tetap dapat memberikan jawaban berbasis sumber eksternal.
 
 ---
