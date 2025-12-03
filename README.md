@@ -19,8 +19,8 @@
 1. **Clone repository ini:**
 
 ```bash
-git clone https://github.com/Subh4n/TemplatePBJDesa.git
-cd ReguBot
+git clone https://github.com/Subh4n/TemplatePBJDesaBot.git
+cd TemplatePBJDesaBot
 ```
 
 2. **Buat virtual environment (opsional tapi disarankan):**
