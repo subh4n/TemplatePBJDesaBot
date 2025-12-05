@@ -233,10 +233,6 @@ Sumber Regulasi: Undang-Undang Republik Indonesia Nomor 3 Tahun 2024
 # =========================
 def call_gemini_rest(prompt):
     url = f"{GEMINI_ENDPOINT}?key={GEMINI_API_KEY}"
-    
-    headers = {
-        "Content-Type": "application/json"
-    }
 
     payload = {
         "contents": [
@@ -247,61 +243,11 @@ def call_gemini_rest(prompt):
     }
 
     try:
-        response = requests.post(url, headers=headers, json=payload, timeout=30)
-        
-        # 1. Cek apakah HTTP Status Code 200 OK
-        # Ini akan melempar error jika statusnya 4xx atau 5xx
-        response.raise_for_status() 
-        
+        response = requests.post(url, json=payload)
         data = response.json()
-
-        # 2. Cek apakah ada field 'candidates' dan tidak kosong
-        if "candidates" in data and data["candidates"]:
-            candidate = data["candidates"][0]
-            
-            # 3. Cek apakah content tersedia (kadang diblokir safety filter)
-            if "content" in candidate:
-                return candidate["content"]["parts"][0]["text"]
-            else:
-                # Tangani jika di-stop karena safety reason
-                finish_reason = candidate.get("finishReason", "UNKNOWN")
-                return f"⚠️ Response blocked. Reason: {finish_reason}"
-        
-        # Jika JSON valid tapi strukturnya error/feedback
-        elif "error" in data:
-            return f"❌ API Error Message: {data['error']['message']}"
-            
-        else:
-            return "⚠️ No candidates returned (Check prompt feedback)."
-
-    except requests.exceptions.HTTPError as http_err:
-        # Menangkap error 400/500 dan mencoba membaca pesan error dari JSON body jika ada
-        try:
-            error_data = response.json()
-            message = error_data.get('error', {}).get('message', str(http_err))
-            return f"❌ HTTP Error: {message}"
-        except:
-            return f"❌ HTTP Error: {http_err}"
-            
-    except Exception as e:
-        return f"❌ Unexpected Error: {e}"
-
-# 1. Cek apakah API mengembalikan Error
-        if "error" in data:
-            return f"❌ API Error: {data['error']['message']}"
-
-        # 2. Cek apakah ada candidates (hasil generate)
-        if "candidates" not in data:
-            # Ini berguna untuk debugging, melihat isi JSON sebenarnya
-            return f"❌ Struktur JSON tidak dikenali: {json.dumps(data)}"
-
-        # 3. Baru ambil teksnya jika aman
         return data["candidates"][0]["content"]["parts"][0]["text"]
-        
-        # -------------------------
-
     except Exception as e:
-        return f"❌ Script Error: {e}"
+        return f"❌ Error from Gemini API: {e}"
 # =========================
 # 💬 CHAT HANDLING
 # =========================
@@ -409,6 +355,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
