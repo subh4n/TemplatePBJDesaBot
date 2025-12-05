@@ -94,7 +94,8 @@ def validate_citation(response_text):
 # =========================
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 GEMINI_ENDPOINT = (
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
+    "https://generativelanguage.googleapis.com/v1beta/models/"
+    "gemini-2.5-flash:generateContent"
 )
 
 
@@ -230,8 +231,12 @@ Sumber Regulasi: Undang-Undang Republik Indonesia Nomor 3 Tahun 2024
 # =========================
 # 📑 GEMINI REST CLIENT
 # =========================
-def call_gemini_rest(prompt):
+def call_gemini_rest_fixed(prompt):
     url = f"{GEMINI_ENDPOINT}?key={GEMINI_API_KEY}"
+    
+    headers = {
+        "Content-Type": "application/json"
+    }
 
     payload = {
         "contents": [
@@ -242,12 +247,44 @@ def call_gemini_rest(prompt):
     }
 
     try:
-        response = requests.post(url, json=payload)
+        response = requests.post(url, headers=headers, json=payload, timeout=30)
+        
+        # 1. Cek apakah HTTP Status Code 200 OK
+        # Ini akan melempar error jika statusnya 4xx atau 5xx
+        response.raise_for_status() 
+        
         data = response.json()
-        return data["candidates"][0]["content"]["parts"][0]["text"]
-    except Exception as e:
-        return f"❌ Error from Gemini API: {e}"
 
+        # 2. Cek apakah ada field 'candidates' dan tidak kosong
+        if "candidates" in data and data["candidates"]:
+            candidate = data["candidates"][0]
+            
+            # 3. Cek apakah content tersedia (kadang diblokir safety filter)
+            if "content" in candidate:
+                return candidate["content"]["parts"][0]["text"]
+            else:
+                # Tangani jika di-stop karena safety reason
+                finish_reason = candidate.get("finishReason", "UNKNOWN")
+                return f"⚠️ Response blocked. Reason: {finish_reason}"
+        
+        # Jika JSON valid tapi strukturnya error/feedback
+        elif "error" in data:
+            return f"❌ API Error Message: {data['error']['message']}"
+            
+        else:
+            return "⚠️ No candidates returned (Check prompt feedback)."
+
+    except requests.exceptions.HTTPError as http_err:
+        # Menangkap error 400/500 dan mencoba membaca pesan error dari JSON body jika ada
+        try:
+            error_data = response.json()
+            message = error_data.get('error', {}).get('message', str(http_err))
+            return f"❌ HTTP Error: {message}"
+        except:
+            return f"❌ HTTP Error: {http_err}"
+            
+    except Exception as e:
+        return f"❌ Unexpected Error: {e}"
 
 
 # =========================
@@ -357,6 +394,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
