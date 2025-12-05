@@ -94,8 +94,7 @@ def validate_citation(response_text):
 # =========================
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 GEMINI_ENDPOINT = (
-    "https://generativelanguage.googleapis.com/v1beta/models/"
-    "gemini-2.5-flash:generateContent"
+    "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
 )
 
 
@@ -358,5 +357,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
