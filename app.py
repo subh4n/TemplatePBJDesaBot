@@ -46,7 +46,7 @@ REGULATION_STRUCTURE = {
   
     
     # Ulasan Materi sebagai Pedoman PBJ Desa
-   "Buku Saku Pedoman PBJ Desa": list(range1, 10))
+   "Buku Saku Pedoman PBJ Desa": list(range1, 10)),
 }
 
 
@@ -348,4 +348,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
