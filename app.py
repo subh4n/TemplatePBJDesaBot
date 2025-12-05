@@ -35,19 +35,18 @@ REGULATION_STRUCTURE = {
     "Permendesa No. 2 Tahun 2024": list(range(1, 26)), # Batang Tubuh
     
     # Regulasi Pengadaan Barang/Jasa (PBJ)
+    "Peraturan Presiden Nomor 46 Tahun 2025": list(range(1, 50)),
     "Peraturan Presiden Nomor 12 Tahun 2021": list(range(1, 138)), # Total Pasal Perpres 16/2018 setelah diubah
     "Peraturan Presiden Nomor 16 Tahun 2018": list(range(1, 133)),
     
-    # Regulasi yang sangat spesifik atau belum tersedia publik
-    "Peraturan Presiden Nomor 46 Tahun 2025": list(range(1, 50)),
-    "Peraturan Lembaga Nomor 2 Tahun 2025": list(range(1, 25)),
+    # Regulasi yang sangat spesifik mengatur tentang PBJ Desa
     "Peraturan Lembaga Nomor 12 Tahun 2019": list(range(1, 20)),
     "Keputusan Deputi I Nomor 1 Tahun 2025": list(range(1, 10)),
     "Keputusan Deputi I Nomor 2 Tahun 2024": list(range(1, 10)),
-    "Perbup No 44 Tahun 2020": list(range(1, 40)),
+  
     
-    # Regulasi tanpa pasal bernomor
-    "Surat Edaran Kepala LKPP Nomor 1 Tahun 2025": list(range(1, 1))
+    # Ulasan Materi sebagai Pedoman PBJ Desa
+   "Buku Saku Pedoman PBJ Desa"
 }
 
 
@@ -95,7 +94,7 @@ def validate_citation(response_text):
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 GEMINI_ENDPOINT = (
     "https://generativelanguage.googleapis.com/v1beta/models/"
-    "gemini-2.5-flash:generateContent"
+    "gemini-1.5-flash:generateContent"
 )
 
 
@@ -161,12 +160,9 @@ def build_gemini_prompt(question):
         "Permendagri No 20 Tahun 2018",
         "Permendagri No 114 Tahun 2014",
         "Permendesa No. 2 Tahun 2024",
-        "Peraturan Lembaga Nomor 2 Tahun 2025",
-        "Peraturan Lembaga Nomor 12 Tahun 2019",
-        "Keputusan Deputi I Nomor 1 Tahun 2025",
-        "Keputusan Deputi I Nomor 2 Tahun 2024",
-        "Surat Edaran Kepala LKPP Nomor 1 Tahun 2025",
-        "Perbup No 44 Tahun 2020"
+        "Peraturan Lkpp Nomor 12 Tahun 2019",
+        "Keputusan Deputi I Lkpp Nomor 1 Tahun 2025",
+        "Keputusan Deputi I Lkpp Nomor 2 Tahun 2024",
     ]
 
     included_regulations = [r for r in all_regulations if r not in EXCLUDED_REGULATIONS]
@@ -227,7 +223,6 @@ Sumber Regulasi: Undang-Undang Republik Indonesia Nomor 3 Tahun 2024
 
     return template
 
-
 # =========================
 # 📑 GEMINI REST CLIENT
 # =========================
@@ -261,8 +256,6 @@ def clear_chat_history():
     st.session_state.messages = [
         {"role": "assistant", "content": "Tanyakan apapun terkait regulasi Pengadaan Barang/Jasa di Desa."}
     ]
-
-
 
 # =========================
 # 🚀 MAIN STREAMLIT APP
@@ -355,11 +348,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
