@@ -231,7 +231,7 @@ Sumber Regulasi: Undang-Undang Republik Indonesia Nomor 3 Tahun 2024
 # =========================
 # 📑 GEMINI REST CLIENT
 # =========================
-def call_gemini_rest_fixed(prompt):
+def call_gemini_rest(prompt):
     url = f"{GEMINI_ENDPOINT}?key={GEMINI_API_KEY}"
     
     headers = {
@@ -409,6 +409,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
