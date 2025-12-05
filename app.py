@@ -286,7 +286,22 @@ def call_gemini_rest_fixed(prompt):
     except Exception as e:
         return f"❌ Unexpected Error: {e}"
 
+# 1. Cek apakah API mengembalikan Error
+        if "error" in data:
+            return f"❌ API Error: {data['error']['message']}"
 
+        # 2. Cek apakah ada candidates (hasil generate)
+        if "candidates" not in data:
+            # Ini berguna untuk debugging, melihat isi JSON sebenarnya
+            return f"❌ Struktur JSON tidak dikenali: {json.dumps(data)}"
+
+        # 3. Baru ambil teksnya jika aman
+        return data["candidates"][0]["content"]["parts"][0]["text"]
+        
+        # -------------------------
+
+    except Exception as e:
+        return f"❌ Script Error: {e}"
 # =========================
 # 💬 CHAT HANDLING
 # =========================
@@ -394,6 +409,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
